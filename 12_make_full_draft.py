@@ -113,8 +113,9 @@ OPEN_THEMES = [     # in question order; the questions themselves come from the 
 CODE_INTRO = [
     "The code for Part A is a set of numbered Python scripts that are run in order. Scripts 02 and 04, which train "
     "DistilBERT, were run on the free GPU service provided by Kaggle. The other steps run on an ordinary laptop. The "
-    "data is the public IT Service Ticket Classification Dataset (Goh, 2024). [[Add where the examiner can find the "
-    "code, for example a link to a GitHub repository or the name of the folder submitted with the dissertation.]]",
+    "data is the public IT Service Ticket Classification Dataset (Goh, 2024). The code, result files and figures are "
+    "available at https://github.com/yewande111/hitl-it-incident-resolution. The fine-tuned DistilBERT model (about "
+    "270 MB) is too large for GitHub, but scripts 02 and 04 recreate it on Kaggle.",
 ]
 CODE_STEPS = [
     "01_model_selection_cross_validation.py compares Naive Bayes, logistic regression and a linear support vector "
