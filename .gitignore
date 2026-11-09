@@ -1,0 +1,5 @@
+# Too large for GitHub (over 100 MB); a copy of the result files that are already in results/
+results/results.zip
+.DS_Store
+__pycache__/
+*.pyc

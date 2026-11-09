@@ -1,0 +1,517 @@
+{
+  "summary": {
+    "Naive Bayes": {
+      "acc_mean": 0.7566959178648779,
+      "acc_sd": 0.005037622838752886,
+      "f1_mean": 0.702076807948022,
+      "f1_sd": 0.009950292003903119
+    },
+    "Logistic Regression": {
+      "acc_mean": 0.8603830554536085,
+      "acc_sd": 0.0034522506578003043,
+      "f1_mean": 0.8596996997829061,
+      "f1_sd": 0.005330450789535207
+    },
+    "Linear SVM (calibrated)": {
+      "acc_mean": 0.8628393216327858,
+      "acc_sd": 0.00291268658273107,
+      "f1_mean": 0.8639356854922848,
+      "f1_sd": 0.004535762321679604
+    }
+  },
+  "thresholds": [
+    {
+      "threshold": 0.5,
+      "flagged_pct": 7.753011575949202,
+      "acc_kept": 0.8928955866523143,
+      "acc_flagged": 0.4735422986181328
+    },
+    {
+      "threshold": 0.6,
+      "flagged_pct": 14.7247119078105,
+      "acc_kept": 0.9180915609487038,
+      "acc_flagged": 0.5261756876663709
+    },
+    {
+      "threshold": 0.7,
+      "flagged_pct": 21.800935483028038,
+      "acc_kept": 0.9394506449241462,
+      "acc_flagged": 0.5767709457029845
+    },
+    {
+      "threshold": 0.8,
+      "flagged_pct": 29.98771851890564,
+      "acc_kept": 0.9581980368006568,
+      "acc_flagged": 0.6320146392471244
+    },
+    {
+      "threshold": 0.9,
+      "flagged_pct": 41.511406098931246,
+      "acc_kept": 0.9768127596836885,
+      "acc_flagged": 0.6963363968273952
+    }
+  ],
+  "bins": {
+    "<0.5": {
+      "count": 2967,
+      "acc": 0.4735422986181328
+    },
+    "0.5-0.6": {
+      "count": 2668,
+      "acc": 0.5847076461769115
+    },
+    "0.6-0.7": {
+      "count": 2708,
+      "acc": 0.6820531757754801
+    },
+    "0.7-0.8": {
+      "count": 3133,
+      "acc": 0.7791254388764762
+    },
+    "0.8-0.9": {
+      "count": 4410,
+      "acc": 0.863718820861678
+    },
+    ">=0.9": {
+      "count": 22383,
+      "acc": 0.9768127596836885
+    }
+  },
+  "per_category": {
+    "Access": {
+      "tickets": 5700,
+      "recall": 0.8643859649122807,
+      "mean_confidence": 0.8702415254120422
+    },
+    "Administrative rights": {
+      "tickets": 1408,
+      "recall": 0.6853693181818182,
+      "mean_confidence": 0.7858034155571548
+    },
+    "HR Support": {
+      "tickets": 8732,
+      "recall": 0.8672698121850664,
+      "mean_confidence": 0.8555138404842157
+    },
+    "Hardware": {
+      "tickets": 10893,
+      "recall": 0.8972734783806114,
+      "mean_confidence": 0.8444264431257257
+    },
+    "Internal Project": {
+      "tickets": 1695,
+      "recall": 0.8082595870206489,
+      "mean_confidence": 0.8283032050908711
+    },
+    "Miscellaneous": {
+      "tickets": 5648,
+      "recall": 0.8287889518413598,
+      "mean_confidence": 0.8190708651689279
+    },
+    "Purchase": {
+      "tickets": 1971,
+      "recall": 0.8883815322171487,
+      "mean_confidence": 0.9267103541016709
+    },
+    "Storage": {
+      "tickets": 2222,
+      "recall": 0.8483348334833484,
+      "mean_confidence": 0.8629543788979196
+    }
+  },
+  "security": {
+    "sensitive_categories": [
+      "Administrative rights"
+    ],
+    "general_threshold": 0.7,
+    "single_threshold": {
+      "reviewed_pct": 21.800935483028038,
+      "sensitive_tickets": 1408,
+      "sensitive_reviewed_pct": 33.16761363636363,
+      "sensitive_unchecked_errors": 170,
+      "sensitive_unchecked_error_pct": 12.073863636363637,
+      "accepted_as_sensitive": 811,
+      "accepted_as_sensitive_correct_pct": 95.06781750924785,
+      "wrongly_accepted_as_sensitive": 40
+    },
+    "grid": [
+      {
+        "sensitive_threshold": 0.7,
+        "watch_threshold": null,
+        "reviewed_pct": 21.800935483028038,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 33.16761363636363,
+        "sensitive_unchecked_errors": 170,
+        "sensitive_unchecked_error_pct": 12.073863636363637,
+        "accepted_as_sensitive": 811,
+        "accepted_as_sensitive_correct_pct": 95.06781750924785,
+        "wrongly_accepted_as_sensitive": 40
+      },
+      {
+        "sensitive_threshold": 0.7,
+        "watch_threshold": 0.01,
+        "reviewed_pct": 29.12801484230056,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 44.46022727272727,
+        "sensitive_unchecked_errors": 11,
+        "sensitive_unchecked_error_pct": 0.78125,
+        "accepted_as_sensitive": 811,
+        "accepted_as_sensitive_correct_pct": 95.06781750924785,
+        "wrongly_accepted_as_sensitive": 40
+      },
+      {
+        "sensitive_threshold": 0.7,
+        "watch_threshold": 0.02,
+        "reviewed_pct": 25.644777757453813,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 43.96306818181818,
+        "sensitive_unchecked_errors": 18,
+        "sensitive_unchecked_error_pct": 1.278409090909091,
+        "accepted_as_sensitive": 811,
+        "accepted_as_sensitive_correct_pct": 95.06781750924785,
+        "wrongly_accepted_as_sensitive": 40
+      },
+      {
+        "sensitive_threshold": 0.7,
+        "watch_threshold": 0.05,
+        "reviewed_pct": 23.30345710627401,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 41.61931818181818,
+        "sensitive_unchecked_errors": 51,
+        "sensitive_unchecked_error_pct": 3.6221590909090913,
+        "accepted_as_sensitive": 811,
+        "accepted_as_sensitive_correct_pct": 95.06781750924785,
+        "wrongly_accepted_as_sensitive": 40
+      },
+      {
+        "sensitive_threshold": 0.7,
+        "watch_threshold": 0.1,
+        "reviewed_pct": 22.383652564739084,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 38.778409090909086,
+        "sensitive_unchecked_errors": 91,
+        "sensitive_unchecked_error_pct": 6.4630681818181825,
+        "accepted_as_sensitive": 811,
+        "accepted_as_sensitive_correct_pct": 95.06781750924785,
+        "wrongly_accepted_as_sensitive": 40
+      },
+      {
+        "sensitive_threshold": 0.7,
+        "watch_threshold": 0.2,
+        "reviewed_pct": 21.910684888552094,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 34.375,
+        "sensitive_unchecked_errors": 153,
+        "sensitive_unchecked_error_pct": 10.866477272727272,
+        "accepted_as_sensitive": 811,
+        "accepted_as_sensitive_correct_pct": 95.06781750924785,
+        "wrongly_accepted_as_sensitive": 40
+      },
+      {
+        "sensitive_threshold": 0.8,
+        "watch_threshold": null,
+        "reviewed_pct": 22.07008283467036,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 39.63068181818182,
+        "sensitive_unchecked_errors": 170,
+        "sensitive_unchecked_error_pct": 12.073863636363637,
+        "accepted_as_sensitive": 708,
+        "accepted_as_sensitive_correct_pct": 96.045197740113,
+        "wrongly_accepted_as_sensitive": 28
+      },
+      {
+        "sensitive_threshold": 0.8,
+        "watch_threshold": 0.01,
+        "reviewed_pct": 29.397162193942876,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 50.92329545454546,
+        "sensitive_unchecked_errors": 11,
+        "sensitive_unchecked_error_pct": 0.78125,
+        "accepted_as_sensitive": 708,
+        "accepted_as_sensitive_correct_pct": 96.045197740113,
+        "wrongly_accepted_as_sensitive": 28
+      },
+      {
+        "sensitive_threshold": 0.8,
+        "watch_threshold": 0.02,
+        "reviewed_pct": 25.913925109096137,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 50.42613636363637,
+        "sensitive_unchecked_errors": 18,
+        "sensitive_unchecked_error_pct": 1.278409090909091,
+        "accepted_as_sensitive": 708,
+        "accepted_as_sensitive_correct_pct": 96.045197740113,
+        "wrongly_accepted_as_sensitive": 28
+      },
+      {
+        "sensitive_threshold": 0.8,
+        "watch_threshold": 0.05,
+        "reviewed_pct": 23.57260445791633,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 48.08238636363637,
+        "sensitive_unchecked_errors": 51,
+        "sensitive_unchecked_error_pct": 3.6221590909090913,
+        "accepted_as_sensitive": 708,
+        "accepted_as_sensitive_correct_pct": 96.045197740113,
+        "wrongly_accepted_as_sensitive": 28
+      },
+      {
+        "sensitive_threshold": 0.8,
+        "watch_threshold": 0.1,
+        "reviewed_pct": 22.652799916381404,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 45.24147727272727,
+        "sensitive_unchecked_errors": 91,
+        "sensitive_unchecked_error_pct": 6.4630681818181825,
+        "accepted_as_sensitive": 708,
+        "accepted_as_sensitive_correct_pct": 96.045197740113,
+        "wrongly_accepted_as_sensitive": 28
+      },
+      {
+        "sensitive_threshold": 0.8,
+        "watch_threshold": 0.2,
+        "reviewed_pct": 22.179832240194415,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 40.83806818181818,
+        "sensitive_unchecked_errors": 153,
+        "sensitive_unchecked_error_pct": 10.866477272727272,
+        "accepted_as_sensitive": 708,
+        "accepted_as_sensitive_correct_pct": 96.045197740113,
+        "wrongly_accepted_as_sensitive": 28
+      },
+      {
+        "sensitive_threshold": 0.9,
+        "watch_threshold": null,
+        "reviewed_pct": 22.394104889074708,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 47.372159090909086,
+        "sensitive_unchecked_errors": 170,
+        "sensitive_unchecked_error_pct": 12.073863636363637,
+        "accepted_as_sensitive": 584,
+        "accepted_as_sensitive_correct_pct": 97.77397260273972,
+        "wrongly_accepted_as_sensitive": 13
+      },
+      {
+        "sensitive_threshold": 0.9,
+        "watch_threshold": 0.01,
+        "reviewed_pct": 29.721184248347228,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 58.66477272727273,
+        "sensitive_unchecked_errors": 11,
+        "sensitive_unchecked_error_pct": 0.78125,
+        "accepted_as_sensitive": 584,
+        "accepted_as_sensitive_correct_pct": 97.77397260273972,
+        "wrongly_accepted_as_sensitive": 13
+      },
+      {
+        "sensitive_threshold": 0.9,
+        "watch_threshold": 0.02,
+        "reviewed_pct": 26.237947163500486,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 58.16761363636363,
+        "sensitive_unchecked_errors": 18,
+        "sensitive_unchecked_error_pct": 1.278409090909091,
+        "accepted_as_sensitive": 584,
+        "accepted_as_sensitive_correct_pct": 97.77397260273972,
+        "wrongly_accepted_as_sensitive": 13
+      },
+      {
+        "sensitive_threshold": 0.9,
+        "watch_threshold": 0.05,
+        "reviewed_pct": 23.896626512320676,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 55.82386363636363,
+        "sensitive_unchecked_errors": 51,
+        "sensitive_unchecked_error_pct": 3.6221590909090913,
+        "accepted_as_sensitive": 584,
+        "accepted_as_sensitive_correct_pct": 97.77397260273972,
+        "wrongly_accepted_as_sensitive": 13
+      },
+      {
+        "sensitive_threshold": 0.9,
+        "watch_threshold": 0.1,
+        "reviewed_pct": 22.976821970785753,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 52.98295454545454,
+        "sensitive_unchecked_errors": 91,
+        "sensitive_unchecked_error_pct": 6.4630681818181825,
+        "accepted_as_sensitive": 584,
+        "accepted_as_sensitive_correct_pct": 97.77397260273972,
+        "wrongly_accepted_as_sensitive": 13
+      },
+      {
+        "sensitive_threshold": 0.9,
+        "watch_threshold": 0.2,
+        "reviewed_pct": 22.50385429459876,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 48.57954545454545,
+        "sensitive_unchecked_errors": 153,
+        "sensitive_unchecked_error_pct": 10.866477272727272,
+        "accepted_as_sensitive": 584,
+        "accepted_as_sensitive_correct_pct": 97.77397260273972,
+        "wrongly_accepted_as_sensitive": 13
+      },
+      {
+        "sensitive_threshold": 0.95,
+        "watch_threshold": null,
+        "reviewed_pct": 22.6946092137239,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 54.97159090909091,
+        "sensitive_unchecked_errors": 170,
+        "sensitive_unchecked_error_pct": 12.073863636363637,
+        "accepted_as_sensitive": 469,
+        "accepted_as_sensitive_correct_pct": 98.93390191897655,
+        "wrongly_accepted_as_sensitive": 5
+      },
+      {
+        "sensitive_threshold": 0.95,
+        "watch_threshold": 0.01,
+        "reviewed_pct": 30.021688572996418,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 66.26420454545455,
+        "sensitive_unchecked_errors": 11,
+        "sensitive_unchecked_error_pct": 0.78125,
+        "accepted_as_sensitive": 469,
+        "accepted_as_sensitive_correct_pct": 98.93390191897655,
+        "wrongly_accepted_as_sensitive": 5
+      },
+      {
+        "sensitive_threshold": 0.95,
+        "watch_threshold": 0.02,
+        "reviewed_pct": 26.53845148814968,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 65.76704545454545,
+        "sensitive_unchecked_errors": 18,
+        "sensitive_unchecked_error_pct": 1.278409090909091,
+        "accepted_as_sensitive": 469,
+        "accepted_as_sensitive_correct_pct": 98.93390191897655,
+        "wrongly_accepted_as_sensitive": 5
+      },
+      {
+        "sensitive_threshold": 0.95,
+        "watch_threshold": 0.05,
+        "reviewed_pct": 24.197130836969873,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 63.42329545454546,
+        "sensitive_unchecked_errors": 51,
+        "sensitive_unchecked_error_pct": 3.6221590909090913,
+        "accepted_as_sensitive": 469,
+        "accepted_as_sensitive_correct_pct": 98.93390191897655,
+        "wrongly_accepted_as_sensitive": 5
+      },
+      {
+        "sensitive_threshold": 0.95,
+        "watch_threshold": 0.1,
+        "reviewed_pct": 23.277326295434946,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 60.58238636363637,
+        "sensitive_unchecked_errors": 91,
+        "sensitive_unchecked_error_pct": 6.4630681818181825,
+        "accepted_as_sensitive": 469,
+        "accepted_as_sensitive_correct_pct": 98.93390191897655,
+        "wrongly_accepted_as_sensitive": 5
+      },
+      {
+        "sensitive_threshold": 0.95,
+        "watch_threshold": 0.2,
+        "reviewed_pct": 22.804358619247957,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 56.17897727272727,
+        "sensitive_unchecked_errors": 153,
+        "sensitive_unchecked_error_pct": 10.866477272727272,
+        "accepted_as_sensitive": 469,
+        "accepted_as_sensitive_correct_pct": 98.93390191897655,
+        "wrongly_accepted_as_sensitive": 5
+      },
+      {
+        "sensitive_threshold": 0.99,
+        "watch_threshold": null,
+        "reviewed_pct": 23.293004781938382,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 70.95170454545455,
+        "sensitive_unchecked_errors": 170,
+        "sensitive_unchecked_error_pct": 12.073863636363637,
+        "accepted_as_sensitive": 240,
+        "accepted_as_sensitive_correct_pct": 99.58333333333333,
+        "wrongly_accepted_as_sensitive": 1
+      },
+      {
+        "sensitive_threshold": 0.99,
+        "watch_threshold": 0.01,
+        "reviewed_pct": 30.620084141210903,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 82.24431818181817,
+        "sensitive_unchecked_errors": 11,
+        "sensitive_unchecked_error_pct": 0.78125,
+        "accepted_as_sensitive": 240,
+        "accepted_as_sensitive_correct_pct": 99.58333333333333,
+        "wrongly_accepted_as_sensitive": 1
+      },
+      {
+        "sensitive_threshold": 0.99,
+        "watch_threshold": 0.02,
+        "reviewed_pct": 27.13684705636416,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 81.7471590909091,
+        "sensitive_unchecked_errors": 18,
+        "sensitive_unchecked_error_pct": 1.278409090909091,
+        "accepted_as_sensitive": 240,
+        "accepted_as_sensitive_correct_pct": 99.58333333333333,
+        "wrongly_accepted_as_sensitive": 1
+      },
+      {
+        "sensitive_threshold": 0.99,
+        "watch_threshold": 0.05,
+        "reviewed_pct": 24.795526405184354,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 79.4034090909091,
+        "sensitive_unchecked_errors": 51,
+        "sensitive_unchecked_error_pct": 3.6221590909090913,
+        "accepted_as_sensitive": 240,
+        "accepted_as_sensitive_correct_pct": 99.58333333333333,
+        "wrongly_accepted_as_sensitive": 1
+      },
+      {
+        "sensitive_threshold": 0.99,
+        "watch_threshold": 0.1,
+        "reviewed_pct": 23.875721863649428,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 76.5625,
+        "sensitive_unchecked_errors": 91,
+        "sensitive_unchecked_error_pct": 6.4630681818181825,
+        "accepted_as_sensitive": 240,
+        "accepted_as_sensitive_correct_pct": 99.58333333333333,
+        "wrongly_accepted_as_sensitive": 1
+      },
+      {
+        "sensitive_threshold": 0.99,
+        "watch_threshold": 0.2,
+        "reviewed_pct": 23.40275418746244,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 72.1590909090909,
+        "sensitive_unchecked_errors": 153,
+        "sensitive_unchecked_error_pct": 10.866477272727272,
+        "accepted_as_sensitive": 240,
+        "accepted_as_sensitive_correct_pct": 99.58333333333333,
+        "wrongly_accepted_as_sensitive": 1
+      }
+    ],
+    "chosen": {
+      "sensitive_threshold": 0.95,
+      "watch_threshold": 0.01,
+      "reviewed_pct": 30.021688572996418,
+      "sensitive_tickets": 1408,
+      "sensitive_reviewed_pct": 66.26420454545455,
+      "sensitive_unchecked_errors": 11,
+      "sensitive_unchecked_error_pct": 0.78125,
+      "accepted_as_sensitive": 469,
+      "accepted_as_sensitive_correct_pct": 98.93390191897655,
+      "wrongly_accepted_as_sensitive": 5
+    },
+    "targets_met": true,
+    "targets": {
+      "max_unchecked_pct": 1.0,
+      "min_accepted_correct_pct": 98.0
+    }
+  }
+}

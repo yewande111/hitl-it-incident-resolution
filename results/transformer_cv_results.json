@@ -1,0 +1,664 @@
+{
+  "model": "distilbert-base-uncased",
+  "quick_test": false,
+  "settings": {
+    "max_len": 256,
+    "batch_size": 32,
+    "epochs": 3,
+    "learning_rate": 5e-05,
+    "weight_decay": 0.01,
+    "warmup_share": 0.1,
+    "calibration_share": 0.1,
+    "seed": 42,
+    "device": "Tesla T4",
+    "minutes_total": 38.8242927869161
+  },
+  "folds": [
+    {
+      "fold": 1,
+      "accuracy": 0.8799320616671021,
+      "macro_f1": 0.8818956714050894,
+      "temperature": 1.34,
+      "ece_before": 0.062142454451794435,
+      "ece_after": 0.022943509561074202,
+      "minutes": 7.745657420158386
+    },
+    {
+      "fold": 2,
+      "accuracy": 0.8825450744708649,
+      "macro_f1": 0.8812837219961918,
+      "temperature": 1.32,
+      "ece_before": 0.05530908436696716,
+      "ece_after": 0.021377734756201874,
+      "minutes": 7.785835142930349
+    },
+    {
+      "fold": 3,
+      "accuracy": 0.8826757251110531,
+      "macro_f1": 0.8838708342930643,
+      "temperature": 1.35,
+      "ece_before": 0.058689331682070446,
+      "ece_after": 0.024331444699676377,
+      "minutes": 7.7890366037686665
+    },
+    {
+      "fold": 4,
+      "accuracy": 0.8771883982231513,
+      "macro_f1": 0.8740102633423377,
+      "temperature": 1.39,
+      "ece_before": 0.06614129718364856,
+      "ece_after": 0.026005124337903127,
+      "minutes": 7.733673143386841
+    },
+    {
+      "fold": 5,
+      "accuracy": 0.8826603946164903,
+      "macro_f1": 0.8769635622933272,
+      "temperature": 1.39,
+      "ece_before": 0.05857718837474599,
+      "ece_after": 0.026230439750116737,
+      "minutes": 7.745290207862854
+    }
+  ],
+  "summary": {
+    "acc_mean": 0.8810003308177323,
+    "acc_sd": 0.002173523401840853,
+    "f1_mean": 0.879604810666002,
+    "f1_sd": 0.0035927954712191164
+  },
+  "calibration": {
+    "temperatures": [
+      1.34,
+      1.32,
+      1.35,
+      1.39,
+      1.39
+    ],
+    "ece_before": 0.05974212836635481,
+    "ece_after": 0.023174426808590026
+  },
+  "bins": {
+    "<0.5": {
+      "count": 1204,
+      "acc": 0.4069767441860465,
+      "mean_conf": 0.4358685847953506
+    },
+    "0.5-0.6": {
+      "count": 1539,
+      "acc": 0.5191682910981157,
+      "mean_conf": 0.5506975720113094
+    },
+    "0.6-0.7": {
+      "count": 1636,
+      "acc": 0.6039119804400978,
+      "mean_conf": 0.6512548562075514
+    },
+    "0.7-0.8": {
+      "count": 2071,
+      "acc": 0.6721390632544665,
+      "mean_conf": 0.7519906378206799
+    },
+    "0.8-0.9": {
+      "count": 3406,
+      "acc": 0.7642395772166765,
+      "mean_conf": 0.8557759126494089
+    },
+    ">=0.9": {
+      "count": 28413,
+      "acc": 0.9658606975680146,
+      "mean_conf": 0.9681093130255854
+    }
+  },
+  "bins_uncalibrated": {
+    "<0.5": {
+      "count": 549,
+      "acc": 0.3825136612021858,
+      "mean_conf": 0.4435348481971275
+    },
+    "0.5-0.6": {
+      "count": 1096,
+      "acc": 0.4635036496350365,
+      "mean_conf": 0.5488953567008032
+    },
+    "0.6-0.7": {
+      "count": 1194,
+      "acc": 0.52428810720268,
+      "mean_conf": 0.6502527439813918
+    },
+    "0.7-0.8": {
+      "count": 1413,
+      "acc": 0.6043878273177636,
+      "mean_conf": 0.7525596728750096
+    },
+    "0.8-0.9": {
+      "count": 2192,
+      "acc": 0.677463503649635,
+      "mean_conf": 0.8552965570757859
+    },
+    ">=0.9": {
+      "count": 31825,
+      "acc": 0.9436606441476827,
+      "mean_conf": 0.9879529590149705
+    }
+  },
+  "thresholds": [
+    {
+      "threshold": 0.5,
+      "flagged_pct": 3.146149625022864,
+      "acc_kept": 0.896398219344395,
+      "acc_flagged": 0.4069767441860465
+    },
+    {
+      "threshold": 0.6,
+      "flagged_pct": 7.16768141315425,
+      "acc_kept": 0.912739965095986,
+      "acc_flagged": 0.46992344148742254
+    },
+    {
+      "threshold": 0.7,
+      "flagged_pct": 11.44268206642452,
+      "acc_kept": 0.9276482738270876,
+      "acc_flagged": 0.5199817309888102
+    },
+    {
+      "threshold": 0.8,
+      "flagged_pct": 16.854372991193916,
+      "acc_kept": 0.9442785756937678,
+      "acc_flagged": 0.5688372093023256
+    },
+    {
+      "threshold": 0.9,
+      "flagged_pct": 25.75452716297787,
+      "acc_kept": 0.9658606975680146,
+      "acc_flagged": 0.6363636363636364
+    }
+  ],
+  "security": {
+    "sensitive_categories": [
+      "Administrative rights"
+    ],
+    "general_threshold": 0.7,
+    "single_threshold": {
+      "reviewed_pct": 11.44268206642452,
+      "sensitive_tickets": 1408,
+      "sensitive_reviewed_pct": 17.329545454545457,
+      "sensitive_unchecked_errors": 156,
+      "sensitive_unchecked_error_pct": 11.079545454545455,
+      "accepted_as_sensitive": 1110,
+      "accepted_as_sensitive_correct_pct": 90.81081081081082,
+      "wrongly_accepted_as_sensitive": 102
+    },
+    "grid": [
+      {
+        "sensitive_threshold": 0.7,
+        "watch_threshold": null,
+        "reviewed_pct": 11.44268206642452,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 17.329545454545457,
+        "sensitive_unchecked_errors": 156,
+        "sensitive_unchecked_error_pct": 11.079545454545455,
+        "accepted_as_sensitive": 1110,
+        "accepted_as_sensitive_correct_pct": 90.81081081081082,
+        "wrongly_accepted_as_sensitive": 102
+      },
+      {
+        "sensitive_threshold": 0.7,
+        "watch_threshold": 0.01,
+        "reviewed_pct": 19.245342182967935,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 27.41477272727273,
+        "sensitive_unchecked_errors": 14,
+        "sensitive_unchecked_error_pct": 0.9943181818181818,
+        "accepted_as_sensitive": 1110,
+        "accepted_as_sensitive_correct_pct": 90.81081081081082,
+        "wrongly_accepted_as_sensitive": 102
+      },
+      {
+        "sensitive_threshold": 0.7,
+        "watch_threshold": 0.02,
+        "reviewed_pct": 15.398886827458256,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 26.06534090909091,
+        "sensitive_unchecked_errors": 33,
+        "sensitive_unchecked_error_pct": 2.34375,
+        "accepted_as_sensitive": 1110,
+        "accepted_as_sensitive_correct_pct": 90.81081081081082,
+        "wrongly_accepted_as_sensitive": 102
+      },
+      {
+        "sensitive_threshold": 0.7,
+        "watch_threshold": 0.05,
+        "reviewed_pct": 13.041887689775015,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 23.4375,
+        "sensitive_unchecked_errors": 70,
+        "sensitive_unchecked_error_pct": 4.971590909090909,
+        "accepted_as_sensitive": 1110,
+        "accepted_as_sensitive_correct_pct": 90.81081081081082,
+        "wrongly_accepted_as_sensitive": 102
+      },
+      {
+        "sensitive_threshold": 0.7,
+        "watch_threshold": 0.1,
+        "reviewed_pct": 12.075047688729782,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 20.59659090909091,
+        "sensitive_unchecked_errors": 110,
+        "sensitive_unchecked_error_pct": 7.8125,
+        "accepted_as_sensitive": 1110,
+        "accepted_as_sensitive_correct_pct": 90.81081081081082,
+        "wrongly_accepted_as_sensitive": 102
+      },
+      {
+        "sensitive_threshold": 0.7,
+        "watch_threshold": 0.2,
+        "reviewed_pct": 11.531526823277325,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 17.897727272727273,
+        "sensitive_unchecked_errors": 148,
+        "sensitive_unchecked_error_pct": 10.511363636363637,
+        "accepted_as_sensitive": 1110,
+        "accepted_as_sensitive_correct_pct": 90.81081081081082,
+        "wrongly_accepted_as_sensitive": 102
+      },
+      {
+        "sensitive_threshold": 0.8,
+        "watch_threshold": null,
+        "reviewed_pct": 11.722281742402467,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 22.15909090909091,
+        "sensitive_unchecked_errors": 156,
+        "sensitive_unchecked_error_pct": 11.079545454545455,
+        "accepted_as_sensitive": 1003,
+        "accepted_as_sensitive_correct_pct": 93.71884346959123,
+        "wrongly_accepted_as_sensitive": 63
+      },
+      {
+        "sensitive_threshold": 0.8,
+        "watch_threshold": 0.01,
+        "reviewed_pct": 19.524941858945883,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 32.24431818181818,
+        "sensitive_unchecked_errors": 14,
+        "sensitive_unchecked_error_pct": 0.9943181818181818,
+        "accepted_as_sensitive": 1003,
+        "accepted_as_sensitive_correct_pct": 93.71884346959123,
+        "wrongly_accepted_as_sensitive": 63
+      },
+      {
+        "sensitive_threshold": 0.8,
+        "watch_threshold": 0.02,
+        "reviewed_pct": 15.6784865034362,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 30.894886363636363,
+        "sensitive_unchecked_errors": 33,
+        "sensitive_unchecked_error_pct": 2.34375,
+        "accepted_as_sensitive": 1003,
+        "accepted_as_sensitive_correct_pct": 93.71884346959123,
+        "wrongly_accepted_as_sensitive": 63
+      },
+      {
+        "sensitive_threshold": 0.8,
+        "watch_threshold": 0.05,
+        "reviewed_pct": 13.32148736575296,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 28.267045454545453,
+        "sensitive_unchecked_errors": 70,
+        "sensitive_unchecked_error_pct": 4.971590909090909,
+        "accepted_as_sensitive": 1003,
+        "accepted_as_sensitive_correct_pct": 93.71884346959123,
+        "wrongly_accepted_as_sensitive": 63
+      },
+      {
+        "sensitive_threshold": 0.8,
+        "watch_threshold": 0.1,
+        "reviewed_pct": 12.354647364707727,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 25.426136363636363,
+        "sensitive_unchecked_errors": 110,
+        "sensitive_unchecked_error_pct": 7.8125,
+        "accepted_as_sensitive": 1003,
+        "accepted_as_sensitive_correct_pct": 93.71884346959123,
+        "wrongly_accepted_as_sensitive": 63
+      },
+      {
+        "sensitive_threshold": 0.8,
+        "watch_threshold": 0.2,
+        "reviewed_pct": 11.811126499255272,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 22.727272727272727,
+        "sensitive_unchecked_errors": 148,
+        "sensitive_unchecked_error_pct": 10.511363636363637,
+        "accepted_as_sensitive": 1003,
+        "accepted_as_sensitive_correct_pct": 93.71884346959123,
+        "wrongly_accepted_as_sensitive": 63
+      },
+      {
+        "sensitive_threshold": 0.9,
+        "watch_threshold": null,
+        "reviewed_pct": 12.16127936449868,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 31.53409090909091,
+        "sensitive_unchecked_errors": 156,
+        "sensitive_unchecked_error_pct": 11.079545454545455,
+        "accepted_as_sensitive": 835,
+        "accepted_as_sensitive_correct_pct": 96.76646706586827,
+        "wrongly_accepted_as_sensitive": 27
+      },
+      {
+        "sensitive_threshold": 0.9,
+        "watch_threshold": 0.01,
+        "reviewed_pct": 19.963939481042097,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 41.61931818181818,
+        "sensitive_unchecked_errors": 14,
+        "sensitive_unchecked_error_pct": 0.9943181818181818,
+        "accepted_as_sensitive": 835,
+        "accepted_as_sensitive_correct_pct": 96.76646706586827,
+        "wrongly_accepted_as_sensitive": 27
+      },
+      {
+        "sensitive_threshold": 0.9,
+        "watch_threshold": 0.02,
+        "reviewed_pct": 16.117484125532417,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 40.26988636363637,
+        "sensitive_unchecked_errors": 33,
+        "sensitive_unchecked_error_pct": 2.34375,
+        "accepted_as_sensitive": 835,
+        "accepted_as_sensitive_correct_pct": 96.76646706586827,
+        "wrongly_accepted_as_sensitive": 27
+      },
+      {
+        "sensitive_threshold": 0.9,
+        "watch_threshold": 0.05,
+        "reviewed_pct": 13.760484987849173,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 37.64204545454545,
+        "sensitive_unchecked_errors": 70,
+        "sensitive_unchecked_error_pct": 4.971590909090909,
+        "accepted_as_sensitive": 835,
+        "accepted_as_sensitive_correct_pct": 96.76646706586827,
+        "wrongly_accepted_as_sensitive": 27
+      },
+      {
+        "sensitive_threshold": 0.9,
+        "watch_threshold": 0.1,
+        "reviewed_pct": 12.79364498680394,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 34.80113636363637,
+        "sensitive_unchecked_errors": 110,
+        "sensitive_unchecked_error_pct": 7.8125,
+        "accepted_as_sensitive": 835,
+        "accepted_as_sensitive_correct_pct": 96.76646706586827,
+        "wrongly_accepted_as_sensitive": 27
+      },
+      {
+        "sensitive_threshold": 0.9,
+        "watch_threshold": 0.2,
+        "reviewed_pct": 12.250124121351485,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 32.10227272727273,
+        "sensitive_unchecked_errors": 148,
+        "sensitive_unchecked_error_pct": 10.511363636363637,
+        "accepted_as_sensitive": 835,
+        "accepted_as_sensitive_correct_pct": 96.76646706586827,
+        "wrongly_accepted_as_sensitive": 27
+      },
+      {
+        "sensitive_threshold": 0.95,
+        "watch_threshold": null,
+        "reviewed_pct": 13.582795474143564,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 68.4659090909091,
+        "sensitive_unchecked_errors": 156,
+        "sensitive_unchecked_error_pct": 11.079545454545455,
+        "accepted_as_sensitive": 291,
+        "accepted_as_sensitive_correct_pct": 98.96907216494846,
+        "wrongly_accepted_as_sensitive": 3
+      },
+      {
+        "sensitive_threshold": 0.95,
+        "watch_threshold": 0.01,
+        "reviewed_pct": 21.38545559068698,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 78.55113636363636,
+        "sensitive_unchecked_errors": 14,
+        "sensitive_unchecked_error_pct": 0.9943181818181818,
+        "accepted_as_sensitive": 291,
+        "accepted_as_sensitive_correct_pct": 98.96907216494846,
+        "wrongly_accepted_as_sensitive": 3
+      },
+      {
+        "sensitive_threshold": 0.95,
+        "watch_threshold": 0.02,
+        "reviewed_pct": 17.539000235177298,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 77.20170454545455,
+        "sensitive_unchecked_errors": 33,
+        "sensitive_unchecked_error_pct": 2.34375,
+        "accepted_as_sensitive": 291,
+        "accepted_as_sensitive_correct_pct": 98.96907216494846,
+        "wrongly_accepted_as_sensitive": 3
+      },
+      {
+        "sensitive_threshold": 0.95,
+        "watch_threshold": 0.05,
+        "reviewed_pct": 15.182001097494055,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 74.57386363636364,
+        "sensitive_unchecked_errors": 70,
+        "sensitive_unchecked_error_pct": 4.971590909090909,
+        "accepted_as_sensitive": 291,
+        "accepted_as_sensitive_correct_pct": 98.96907216494846,
+        "wrongly_accepted_as_sensitive": 3
+      },
+      {
+        "sensitive_threshold": 0.95,
+        "watch_threshold": 0.1,
+        "reviewed_pct": 14.215161096448822,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 71.73295454545455,
+        "sensitive_unchecked_errors": 110,
+        "sensitive_unchecked_error_pct": 7.8125,
+        "accepted_as_sensitive": 291,
+        "accepted_as_sensitive_correct_pct": 98.96907216494846,
+        "wrongly_accepted_as_sensitive": 3
+      },
+      {
+        "sensitive_threshold": 0.95,
+        "watch_threshold": 0.2,
+        "reviewed_pct": 13.671640230996369,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 69.0340909090909,
+        "sensitive_unchecked_errors": 148,
+        "sensitive_unchecked_error_pct": 10.511363636363637,
+        "accepted_as_sensitive": 291,
+        "accepted_as_sensitive_correct_pct": 98.96907216494846,
+        "wrongly_accepted_as_sensitive": 3
+      },
+      {
+        "sensitive_threshold": 0.99,
+        "watch_threshold": null,
+        "reviewed_pct": 14.343202069560219,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 88.92045454545455,
+        "sensitive_unchecked_errors": 156,
+        "sensitive_unchecked_error_pct": 11.079545454545455,
+        "accepted_as_sensitive": 0,
+        "accepted_as_sensitive_correct_pct": NaN,
+        "wrongly_accepted_as_sensitive": 0
+      },
+      {
+        "sensitive_threshold": 0.99,
+        "watch_threshold": 0.01,
+        "reviewed_pct": 22.145862186103635,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 99.00568181818183,
+        "sensitive_unchecked_errors": 14,
+        "sensitive_unchecked_error_pct": 0.9943181818181818,
+        "accepted_as_sensitive": 0,
+        "accepted_as_sensitive_correct_pct": NaN,
+        "wrongly_accepted_as_sensitive": 0
+      },
+      {
+        "sensitive_threshold": 0.99,
+        "watch_threshold": 0.02,
+        "reviewed_pct": 18.299406830593952,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 97.65625,
+        "sensitive_unchecked_errors": 33,
+        "sensitive_unchecked_error_pct": 2.34375,
+        "accepted_as_sensitive": 0,
+        "accepted_as_sensitive_correct_pct": NaN,
+        "wrongly_accepted_as_sensitive": 0
+      },
+      {
+        "sensitive_threshold": 0.99,
+        "watch_threshold": 0.05,
+        "reviewed_pct": 15.942407692910713,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 95.0284090909091,
+        "sensitive_unchecked_errors": 70,
+        "sensitive_unchecked_error_pct": 4.971590909090909,
+        "accepted_as_sensitive": 0,
+        "accepted_as_sensitive_correct_pct": NaN,
+        "wrongly_accepted_as_sensitive": 0
+      },
+      {
+        "sensitive_threshold": 0.99,
+        "watch_threshold": 0.1,
+        "reviewed_pct": 14.97556769186548,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 92.1875,
+        "sensitive_unchecked_errors": 110,
+        "sensitive_unchecked_error_pct": 7.8125,
+        "accepted_as_sensitive": 0,
+        "accepted_as_sensitive_correct_pct": NaN,
+        "wrongly_accepted_as_sensitive": 0
+      },
+      {
+        "sensitive_threshold": 0.99,
+        "watch_threshold": 0.2,
+        "reviewed_pct": 14.432046826413023,
+        "sensitive_tickets": 1408,
+        "sensitive_reviewed_pct": 89.48863636363636,
+        "sensitive_unchecked_errors": 148,
+        "sensitive_unchecked_error_pct": 10.511363636363637,
+        "accepted_as_sensitive": 0,
+        "accepted_as_sensitive_correct_pct": NaN,
+        "wrongly_accepted_as_sensitive": 0
+      }
+    ],
+    "chosen": {
+      "sensitive_threshold": 0.95,
+      "watch_threshold": 0.01,
+      "reviewed_pct": 21.38545559068698,
+      "sensitive_tickets": 1408,
+      "sensitive_reviewed_pct": 78.55113636363636,
+      "sensitive_unchecked_errors": 14,
+      "sensitive_unchecked_error_pct": 0.9943181818181818,
+      "accepted_as_sensitive": 291,
+      "accepted_as_sensitive_correct_pct": 98.96907216494846,
+      "wrongly_accepted_as_sensitive": 3
+    },
+    "targets_met": true,
+    "targets": {
+      "max_unchecked_pct": 1.0,
+      "min_accepted_correct_pct": 98.0
+    }
+  },
+  "per_category": {
+    "Access": {
+      "tickets": 5700,
+      "recall": 0.9219298245614035,
+      "mean_confidence": 0.9277232044333952
+    },
+    "Administrative rights": {
+      "tickets": 1408,
+      "recall": 0.7848011363636364,
+      "mean_confidence": 0.8470648252193562
+    },
+    "HR Support": {
+      "tickets": 8732,
+      "recall": 0.8765460375629868,
+      "mean_confidence": 0.9057751897905079
+    },
+    "Hardware": {
+      "tickets": 10893,
+      "recall": 0.8791884696594143,
+      "mean_confidence": 0.8854598497844843
+    },
+    "Internal Project": {
+      "tickets": 1695,
+      "recall": 0.8678466076696165,
+      "mean_confidence": 0.8814493546443702
+    },
+    "Miscellaneous": {
+      "tickets": 5648,
+      "recall": 0.8599504249291785,
+      "mean_confidence": 0.8882862058265013
+    },
+    "Purchase": {
+      "tickets": 1971,
+      "recall": 0.9142567224759005,
+      "mean_confidence": 0.9397879656288963
+    },
+    "Storage": {
+      "tickets": 2222,
+      "recall": 0.8973897389738974,
+      "mean_confidence": 0.9082563895427033
+    }
+  },
+  "examples": [
+    {
+      "level": "High",
+      "text": "new starter access card enabling thursday starter form date hello please fill he going his contract active starting thanks",
+      "words": 19,
+      "key_words": [
+        "starter",
+        "new",
+        "form"
+      ],
+      "predicted": "HR Support",
+      "confidence": 0.9758743643760681,
+      "second": "Access",
+      "second_confidence": 0.0131191061809659,
+      "true": "HR Support"
+    },
+    {
+      "level": "Medium",
+      "text": "for keeps asking for credentials sent friday re update for credentials error message hi still gets issue periodically there anything can differently resolve thanks sent november update for credentials error message hello could you please try follow exact steps below log out for delete any sign info exit open run bar type users delete sip folder sip delete files tracing folder delete folder itself after try logging for again if you encounter any issues after these steps please let know thank you kind regards analyst ext hub sent friday november re update for credentials error message hi haven received response can someone help with please thanks sent november re update for credentials error message hi thought was fixed but have tried follow instructions given but were little hard understand can someone help again with please thanks sent november update for credentials error message dear further our recent communication we believe your below query resolved if you with resolution there need for response however please let know if we can be any further assistance matter reference number summary for credentials error message resolver description sent monday october for credentials error message hi keep getting enter credentials message for even though already logged have signed out deleted sign info but message still comes back think need physically delete file but where can you help thanks kind regards ext hub ref msg",
+      "words": 229,
+      "key_words": [
+        "friday",
+        "asking",
+        "re"
+      ],
+      "predicted": "Hardware",
+      "confidence": 0.6565978527069092,
+      "second": "Administrative rights",
+      "second_confidence": 0.2932552695274353,
+      "true": "Hardware"
+    },
+    {
+      "level": "Low",
+      "text": "new joiners joiners hello please added colic thank kind regards analyst",
+      "words": 11,
+      "key_words": [
+        "added",
+        "hello",
+        "analyst"
+      ],
+      "predicted": "Miscellaneous",
+      "confidence": 0.3948422968387604,
+      "second": "HR Support",
+      "second_confidence": 0.3812689781188965,
+      "true": "HR Support"
+    }
+  ],
+  "word_counts": {
+    "mean_words_conf_90_plus": 42.50399465033611,
+    "mean_words_conf_below_70": 45.37245946563142
+  }
+}

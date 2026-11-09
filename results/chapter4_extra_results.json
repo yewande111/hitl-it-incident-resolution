@@ -1,0 +1,228 @@
+{
+  "tickets": 9568,
+  "per_category": [
+    {
+      "category": "Access",
+      "tickets": 1425,
+      "precision": 91.02209944751381,
+      "recall": 92.49122807017544,
+      "f1": 91.75078315349808,
+      "low_confidence_pct": 6.87719298245614
+    },
+    {
+      "category": "Administrative rights",
+      "tickets": 352,
+      "precision": 83.48082595870207,
+      "recall": 80.39772727272727,
+      "f1": 81.91027496382054,
+      "low_confidence_pct": 16.761363636363637
+    },
+    {
+      "category": "HR Support",
+      "tickets": 2183,
+      "precision": 88.76353790613717,
+      "recall": 90.10535959688501,
+      "f1": 89.4294157763128,
+      "low_confidence_pct": 9.161704076958314
+    },
+    {
+      "category": "Hardware",
+      "tickets": 2724,
+      "precision": 87.33944954128441,
+      "recall": 87.37151248164464,
+      "f1": 87.35547806937053,
+      "low_confidence_pct": 13.656387665198238
+    },
+    {
+      "category": "Internal Project",
+      "tickets": 424,
+      "precision": 87.82201405152225,
+      "recall": 88.44339622641509,
+      "f1": 88.1316098707403,
+      "low_confidence_pct": 9.19811320754717
+    },
+    {
+      "category": "Miscellaneous",
+      "tickets": 1412,
+      "precision": 85.87813620071685,
+      "recall": 84.84419263456091,
+      "f1": 85.3580334877093,
+      "low_confidence_pct": 13.101983002832862
+    },
+    {
+      "category": "Purchase",
+      "tickets": 493,
+      "precision": 95.2991452991453,
+      "recall": 90.46653144016227,
+      "f1": 92.81997918834547,
+      "low_confidence_pct": 5.476673427991886
+    },
+    {
+      "category": "Storage",
+      "tickets": 555,
+      "precision": 90.54545454545455,
+      "recall": 89.72972972972974,
+      "f1": 90.13574660633485,
+      "low_confidence_pct": 8.64864864864865
+    }
+  ],
+  "admin_rights_wrong_predicted_as": {
+    "Access": 4,
+    "HR Support": 7,
+    "Hardware": 51,
+    "Internal Project": 2,
+    "Miscellaneous": 4,
+    "Storage": 1
+  },
+  "admin_rights_wrong_grants_true_category": {
+    "Access": 6,
+    "HR Support": 1,
+    "Hardware": 34,
+    "Internal Project": 1,
+    "Miscellaneous": 6,
+    "Purchase": 3,
+    "Storage": 5
+  },
+  "bins": {
+    "<0.5": {
+      "count": 261,
+      "share_pct": 2.7278428093645486,
+      "mean_conf": 43.59933527203066,
+      "acc": 40.229885057471265
+    },
+    "0.5-0.6": {
+      "count": 342,
+      "share_pct": 3.574414715719063,
+      "mean_conf": 54.94823498830409,
+      "acc": 47.953216374269005
+    },
+    "0.6-0.7": {
+      "count": 425,
+      "share_pct": 4.441889632107023,
+      "mean_conf": 65.1072216,
+      "acc": 56.705882352941174
+    },
+    "0.7-0.8": {
+      "count": 543,
+      "share_pct": 5.675167224080267,
+      "mean_conf": 75.36459220257828,
+      "acc": 68.69244935543279
+    },
+    "0.8-0.9": {
+      "count": 815,
+      "share_pct": 8.517976588628763,
+      "mean_conf": 85.61248560245399,
+      "acc": 75.33742331288343
+    },
+    ">=0.9": {
+      "count": 7182,
+      "share_pct": 75.06270903010034,
+      "mean_conf": 96.92782549707603,
+      "acc": 97.02032859927596
+    }
+  },
+  "ece_pct": 2.9200007788461564,
+  "mean_confidence_pct": 90.37155979347827,
+  "ai_accuracy_pct": 88.47198996655518,
+  "thresholds": [
+    {
+      "threshold_pct": 50,
+      "reviewed_pct": 2.7278428093645486,
+      "reviewed_tickets": 261,
+      "acc_kept": 89.82486300633931,
+      "acc_sent": 40.229885057471265,
+      "admin_left_wrong_unreviewed": 55,
+      "acc_0_0": 90.10242474916389,
+      "acc_0_0_sd": 1.4282446375932695e-14,
+      "gain_per_100_0_0": 59.770114942528984,
+      "acc_10_10": 89.82148829431436,
+      "acc_10_10_sd": 0.04811959144918042,
+      "gain_per_100_10_10": 49.4712643678154,
+      "acc_20_20": 89.55863294314382,
+      "acc_20_20_sd": 0.05941036859420069,
+      "gain_per_100_20_20": 39.835249042145826
+    },
+    {
+      "threshold_pct": 60,
+      "reviewed_pct": 6.302257525083613,
+      "reviewed_tickets": 603,
+      "acc_kept": 91.42219743446738,
+      "acc_sent": 44.61028192371476,
+      "admin_left_wrong_unreviewed": 46,
+      "acc_0_0": 91.96279264214044,
+      "acc_0_0_sd": 2.856489275186539e-14,
+      "gain_per_100_0_0": 55.38971807628482,
+      "acc_10_10": 91.31333612040135,
+      "acc_10_10_sd": 0.06939139164483502,
+      "gain_per_100_10_10": 45.084577114427965,
+      "acc_20_20": 90.69544314381272,
+      "acc_20_20_sd": 0.0855636995628285,
+      "gain_per_100_20_20": 35.28026533996706
+    },
+    {
+      "threshold_pct": 70,
+      "reviewed_pct": 10.744147157190636,
+      "reviewed_tickets": 1028,
+      "acc_kept": 93.14988290398126,
+      "acc_sent": 49.61089494163424,
+      "admin_left_wrong_unreviewed": 35,
+      "acc_0_0": 93.88586956521742,
+      "acc_0_0_sd": 2.856489275186539e-14,
+      "gain_per_100_0_0": 50.38910505836601,
+      "acc_10_10": 92.78271321070233,
+      "acc_10_10_sd": 0.09357990207310138,
+      "gain_per_100_10_10": 40.121595330739154,
+      "acc_20_20": 91.71895903010032,
+      "acc_20_20_sd": 0.11885077370918956,
+      "gain_per_100_20_20": 30.22081712062245
+    },
+    {
+      "threshold_pct": 80,
+      "reviewed_pct": 16.4193143812709,
+      "reviewed_tickets": 1571,
+      "acc_kept": 94.81055395773414,
+      "acc_sent": 56.206238064926794,
+      "admin_left_wrong_unreviewed": 26,
+      "acc_0_0": 95.66262541806023,
+      "acc_0_0_sd": 2.856489275186539e-14,
+      "gain_per_100_0_0": 43.79376193507338,
+      "acc_10_10": 94.0026128762542,
+      "acc_10_10_sd": 0.1176283239937387,
+      "gain_per_100_10_10": 33.68364099299823,
+      "acc_20_20": 92.3683110367893,
+      "acc_20_20_sd": 0.16275683176732078,
+      "gain_per_100_20_20": 23.730108211330332
+    },
+    {
+      "threshold_pct": 90,
+      "reviewed_pct": 24.937290969899664,
+      "reviewed_tickets": 2386,
+      "acc_kept": 97.02032859927596,
+      "acc_sent": 62.74098910310143,
+      "admin_left_wrong_unreviewed": 14,
+      "acc_0_0": 97.7633779264214,
+      "acc_0_0_sd": 0.0,
+      "gain_per_100_0_0": 37.259010896898545,
+      "acc_10_10": 95.24571488294313,
+      "acc_10_10_sd": 0.16537891569304913,
+      "gain_per_100_10_10": 27.163034367141613,
+      "acc_20_20": 92.76170568561871,
+      "acc_20_20_sd": 0.20874127033551412,
+      "gain_per_100_20_20": 17.202011735121452
+    }
+  ],
+  "security_rule": {
+    "general_only": 1028,
+    "added_by_strict_threshold": 183,
+    "added_by_watch_value": 686,
+    "total_reviewed": 1897,
+    "admin_tickets": 352,
+    "admin_tickets_reviewed_selective": 59,
+    "admin_tickets_reviewed_security": 250,
+    "admin_wrong_ai": 69,
+    "admin_wrong_caught_selective": 34,
+    "admin_wrong_caught_security": 64,
+    "extra_reviewed_ai_was_right": 720,
+    "extra_reviewed_ai_was_wrong": 149
+  }
+}
