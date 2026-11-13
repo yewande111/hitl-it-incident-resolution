@@ -88,7 +88,7 @@ ABBREVIATIONS = [
 SURVEY_RESULTS = json.loads((ROOT / "results" / "survey_results.json").read_text())     # from step 16
 
 RESULTS_INTRO = ("This appendix gives the full counts for the survey in Appendix A. In total, 47 responses were "
-    "received between 30 October and 5 November 2026. One was empty and was removed, leaving 46. All 46 respondents "
+    "received between 30 October and 5 November 2026 (the survey closed on 7 November). One was empty and was removed, leaving 46. All 46 respondents "
     "agreed to take part, confirmed they were aged 18 or over, and answered every closed question. Their roles and "
     "experience are in Table 4.12, the mean and agreement for each rating statement in Table 4.13, and the approach "
     "they would feel most comfortable relying on in Table 4.14. Table C.1 gives the number of respondents who chose "
@@ -503,7 +503,7 @@ def build_front_matter(doc, figs, tabs, contents, text_w):
         new_par(doc, "Supervised by Mr. Kevin Bayliss", align=C, after=36),
         new_par(doc, "School of Enterprise Computing and Digital Transformation", align=C, after=0),
         new_par(doc, "Technological University Dublin", align=C, after=36),
-        new_par(doc, "Technological University of Dublin Tallaght Campus, Blessington Rd, Tallaght, Dublin 24, D24 FKT9", align=C),
+        new_par(doc, "Blessington Road, Tallaght, Dublin 24, D24 FKT9", align=C),
         new_par(doc, "DECLARATION", style="Front Heading"),
         body_par(doc, DECLARATION),
         new_par(doc, "Signed: ", before=36),
