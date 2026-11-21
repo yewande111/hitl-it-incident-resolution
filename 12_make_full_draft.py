@@ -126,8 +126,8 @@ CODE_STEPS = [
     "04_final_model_and_test_predictions.py fine-tunes DistilBERT on the whole training portion and records its "
     "predictions for the test portion.",
     "05_review_conditions_experiment.py runs the four conditions with the modelled reviewer and the McNemar tests.",
-    "06_fill_chapter_values.py fills the results into Chapter Three.",
-    "07_chapter4_extra_results.py works out the extra results used in Chapter Four.",
+    "06_fill_chapter_values.py fills the results into Chapter 3.",
+    "07_chapter4_extra_results.py works out the extra results used in Chapter 4.",
     "09_make_extra_figures.py draws Figure 3.2 and Figures 4.1 to 4.4.",
     "16_survey_analysis.py counts the survey answers (Part B) from the Microsoft Forms export, for Section 4.12 "
     "and Appendix C.",
@@ -251,7 +251,7 @@ def ensure_style(doc, name, base, configure=None):
 def setup_styles(doc, text_w):
     def front(s):
         s.paragraph_format.page_break_before = True
-        s.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        s.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.LEFT      # supervisor feedback, 2026-11-21
         lvl = OxmlElement("w:outlineLvl")       # body text level, so these headings stay out of Contents
         lvl.set(qn("w:val"), "9")
         s.element.get_or_add_pPr().append(lvl)
@@ -281,8 +281,8 @@ def setup_styles(doc, text_w):
             c.set(qn("w:val"), "000000")
 
     ensure_style(doc, "Front Heading", "Heading 1", front)
-    ensure_style(doc, "Figure Caption", "Normal")
-    ensure_style(doc, "Table Caption", "Normal")
+    for kind in ("Figure", "Table"):
+        ensure_style(doc, f"{kind} Caption", "Normal").font.bold = True
     for level in (1, 2):
         s = ensure_style(doc, f"toc {level}", "Normal", toc(level))
         s.element.set(qn("w:styleId"), f"TOC{level}")     # the ID Word itself uses for these styles
@@ -313,6 +313,27 @@ def fit_to_page(doc, text_w):
                 tcw.set(qn("w:w"), str(int(int(tcw.get(qn("w:w"))) * k)))
 
 
+NUMBERS = {"ONE": "1", "TWO": "2", "THREE": "3", "FOUR": "4", "FIVE": "5", "SIX": "6"}
+
+
+def chapter_digits(doc):
+    """CHAPTER ONE -> CHAPTER 1, and Chapter Two / Chapters Two to Four -> Chapter 2 / Chapters 2 to 4
+    (supervisor feedback, 2026-11-21)."""
+    word = r"(One|Two|Three|Four|Five|Six|ONE|TWO|THREE|FOUR|FIVE|SIX)"
+    pat = re.compile(r"\b(CHAPTER|Chapters?) " + word + r"\b(?:( to | and )" + word + r"\b)?")
+
+    def sub(m):
+        out = m.group(1) + " " + NUMBERS[m.group(2).upper()]
+        if m.group(3):
+            out += m.group(3) + NUMBERS[m.group(4).upper()]
+        return out
+    for t in doc.element.body.iter(qn("w:t")):
+        if t.text:
+            t.text = pat.sub(sub, t.text)
+    left = [p.text[:60] for p in doc.paragraphs if re.search(r"\b(CHAPTER|Chapters?) " + word + r"\b", p.text)]
+    assert not left, left
+
+
 def mark_captions(doc):
     figs, tabs = [], []
     for p in doc.paragraphs:
@@ -320,6 +341,9 @@ def mark_captions(doc):
         if m:
             kind = m.group(1)
             p.style = doc.styles[f"{kind} Caption"]
+            for r in p.runs:            # Word copies direct formatting into the lists of figures and tables
+                r.bold = None
+                r.italic = None
             (figs if kind == "Figure" else tabs).append(p.text)
     return figs, tabs
 
@@ -584,10 +608,11 @@ def main():
     text_w = A4_W - sect.left_margin.twips - sect.right_margin.twips
     setup_styles(doc, text_w)
     fit_to_page(doc, text_w)
+    chapter_digits(doc)
     figs, tabs = mark_captions(doc)
     highlight_placeholders(doc)
     ch1 = doc.paragraphs[0]
-    assert ch1.text.startswith("CHAPTER ONE"), ch1.text
+    assert ch1.text.startswith("CHAPTER 1"), ch1.text
     for p in doc.paragraphs:            # every chapter starts on a new page, as in the template
         if p.style.name == "Heading 1":
             p.paragraph_format.page_break_before = True
