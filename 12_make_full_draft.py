@@ -334,6 +334,23 @@ def chapter_digits(doc):
     assert not left, left
 
 
+def spell_out_chapter4(doc):
+    """In Chapter 4, write RQ1 as Research Question 1 and H1 as Hypothesis 1 (supervisor feedback, 2026-11-21)."""
+    body = list(doc.element.body.iterchildren())
+    heads = [i for i, el in enumerate(body)
+             if el.tag == qn("w:p") and "".join(t.text or "" for t in el.iter(qn("w:t"))).startswith(("CHAPTER 4", "CHAPTER 5"))]
+    assert len(heads) == 2, heads
+    steps = [(r"\b[Hh]ypotheses H(\d) to H(\d)\b", r"Hypotheses \1 to \2"),
+             (r"\bH(\d) to H(\d)\b", r"Hypotheses \1 to \2"),
+             (r"\bRQ(\d)\b", r"Research Question \1"),
+             (r"\bH(\d)\b", r"Hypothesis \1")]
+    for el in body[heads[0]:heads[1]]:
+        for t in el.iter(qn("w:t")):
+            if t.text:
+                for a, b in steps:
+                    t.text = re.sub(a, b, t.text)
+
+
 def mark_captions(doc):
     figs, tabs = [], []
     for p in doc.paragraphs:
@@ -609,6 +626,7 @@ def main():
     setup_styles(doc, text_w)
     fit_to_page(doc, text_w)
     chapter_digits(doc)
+    spell_out_chapter4(doc)
     figs, tabs = mark_captions(doc)
     highlight_placeholders(doc)
     ch1 = doc.paragraphs[0]
