@@ -13,6 +13,7 @@ the fields, or right-click a list and choose Update Field > Update entire table.
 Run from the Project folder:  python3 code/12_make_full_draft.py
 """
 import copy
+import csv
 import json
 import re
 from pathlib import Path
@@ -22,6 +23,8 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_COLOR_INDEX, WD_TAB_ALIGNMENT,
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Pt, Inches, Twips
+from docx.table import Table
+from docx.text.paragraph import Paragraph
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "Chapters 1-6 - Introduction to Conclusion.docx"
@@ -75,12 +78,10 @@ ABBREVIATIONS = [
     ("DistilBERT", "A smaller, distilled version of BERT"),
     ("GDPR", "General Data Protection Regulation"),
     ("GPU", "Graphics processing unit"),
-    ("H1 to H4", "Hypotheses one to four"),
     ("HITL", "Human in the loop"),
     ("IT", "Information technology"),
     ("MSc", "Master of Science"),
     ("REIC", "Research Ethics and Integrity Committee"),
-    ("RQ1, RQ2", "Research questions one and two"),
     ("SVM", "Support vector machine"),
     ("TF-IDF", "Term frequency-inverse document frequency"),
     ("TU Dublin", "Technological University Dublin"),
@@ -91,9 +92,9 @@ SURVEY_RESULTS = json.loads((ROOT / "results" / "survey_results.json").read_text
 RESULTS_INTRO = ("This appendix gives the full counts for the survey in Appendix A. In total, 47 responses were "
     "received between 30 October and 5 November 2026 (the survey closed on 7 November). One was empty and was removed, leaving 46. All 46 respondents "
     "agreed to take part, confirmed they were aged 18 or over, and answered every closed question. Their roles and "
-    "experience are in Table 4.12, the mean and agreement for each rating statement in Table 4.13, and the approach "
-    "they would feel most comfortable relying on in Table 4.14. Table C.1 gives the number of respondents who chose "
-    "each answer for the nine rating statements, whose wording is in Table 4.13. The counts were produced from the "
+    "experience are in Table 4.13, the mean and agreement for each rating statement in Table 4.14, and the approach "
+    "they would feel most comfortable relying on in Table 4.15. Table C.1 gives the number of respondents who chose "
+    "each answer for the nine rating statements, whose wording is in Table 4.14. The counts were produced from the "
     "Microsoft Forms export by script 16 (Appendix D).")
 RESULTS_OPEN = ("The three open questions were optional. Table C.2 gives the number who answered each one and the "
     "main themes, with the approximate number of respondents who raised each theme. Some answers had no content "
@@ -335,14 +336,94 @@ def chapter_digits(doc):
     assert not left, left
 
 
+def _set_cell(cell, text):
+    runs = [r for par in cell.paragraphs for r in par.runs]
+    if not runs:
+        runs = [cell.paragraphs[0].add_run()]
+    runs[0].text = text
+    for r in runs[1:]:
+        r.text = ""
+
+
+def add_results_summary(doc):
+    """Supervisor feedback, 2026-11-21: summarise the main results in one table at the start of Chapter 4,
+    keeping every detailed table. The new table becomes Table 4.1, so the others move up by one."""
+    pat = re.compile(r"\b(Tables? )4\.(\d+)\b((?: to | and |, )4\.(\d+)\b)?")
+
+    def bump(m):
+        out = f"{m.group(1)}4.{int(m.group(2)) + 1}"
+        if m.group(3):
+            out += m.group(3)[:-len(m.group(4)) - 2] + f"4.{int(m.group(4)) + 1}"
+        return out
+    for t in doc.element.body.iter(qn("w:t")):
+        if t.text and "4." in t.text:
+            t.text = pat.sub(bump, t.text)
+
+    rows = {(r["condition"], r["overturn_pct"], r["miss_pct"]): r
+            for r in csv.DictReader(open(ROOT / "code" / "results" / "experiment_summary.csv"))}
+    conds = ["AI only", "Selective review", "Selective review + security rule", "Full review"]
+
+    def get(c, o, m, k):
+        return float(rows[(c, o, m)][k])
+    pref = SURVEY_RESULTS["preference"]
+    stmt = {x["no"]: x for x in SURVEY_RESULTS["statements"]}
+    chosen = [pref["AI only, no human review"], pref["Human reviews only uncertain cases"],
+              pref["Human reviews only uncertain cases, with stricter checks for security-sensitive requests"],
+              pref["Human reviews every case"]]
+    table = [["Result"] + conds,
+             ["Share of tickets sent to the reviewer"] + [f"{get(c, '0.0', '0.0', 'reviewed_pct_mean'):.1f}%" for c in conds]]
+    for o, label in (("0.0", "Accuracy with a perfect reviewer (0/0)"), ("10.0", "Accuracy at reviewer error 10/10"),
+                     ("20.0", "Accuracy at reviewer error 20/20")):
+        table.append([label] + [f"{get(c, o, o, 'accuracy_mean'):.2f}%" for c in conds])
+    table.append(["Extra correct tickets per 100 reviewed (0/0)", "-"]
+                 + [f"{get(c, '0.0', '0.0', 'gain_per_100_reviewed'):.1f}" for c in conds[1:]])
+    table.append(["Wrong Administrative rights tickets left without a human check"]
+                 + [f"{get(c, '0.0', '0.0', 'sensitive_errors_mean'):.0f}" for c in conds])
+    table.append(["Survey: comfort rating (mean, 1 to 5)"] + [f"{stmt[n]['mean']:.2f}" for n in (4, 6, 7, 5)])
+    table.append(["Survey: chosen as the preferred approach"] + [f"{k} ({pc:.1f}%)" for k, pc in chosen])
+
+    paras = doc.paragraphs
+    intro = next(p for p in paras if p.text.startswith("Reviewer error settings are written as"))
+    cap = next(p for p in paras if p.style.name == "Table Caption" or CAPTION.match(p.text))
+    tpl_cap = next(p for p in paras if "Results of the four conditions with a perfect reviewer" in p.text)
+    tpl_tbl = tpl_cap._p.getnext()
+    assert tpl_tbl.tag == qn("w:tbl")
+    new_tbl = copy.deepcopy(tpl_tbl)
+    t = Table(new_tbl, intro._parent)
+    while len(t.rows) > 2:
+        new_tbl.remove(t.rows[-1]._tr)
+    for _ in range(len(table) - 2):
+        new_tbl.append(copy.deepcopy(t.rows[1]._tr))
+    for row, values in zip(t.rows, table):
+        for cell, v in zip(row.cells, values):
+            _set_cell(cell, v)
+    lead = copy.deepcopy(intro._p)
+    new_cap = copy.deepcopy(tpl_cap._p)
+    after = copy.deepcopy(tpl_tbl.getnext())       # the empty paragraph that follows each table
+    intro._p.addnext(lead)
+    lead.addnext(new_cap)
+    new_cap.addnext(new_tbl)
+    new_tbl.addnext(after)
+    Paragraph(lead, intro._parent).runs[0].text = (
+        "Table 4.1 brings together the main results for the four conditions from both parts of the study, so that "
+        "they can be compared at a glance. Accuracy at 10/10 and 20/20 is the mean of 100 runs. Each result is "
+        "explained in the sections that follow, where the full tables are given.")
+    for r in Paragraph(lead, intro._parent).runs[1:]:
+        r.text = ""
+    cp = Paragraph(new_cap, intro._parent)
+    cp.runs[0].text = "Table 4.1: Summary of the main results for the four conditions"
+    for r in cp.runs[1:]:
+        r.text = ""
+
+
 def spell_out_chapter4(doc):
-    """In Chapter 4, write RQ1 as Research Question 1 and H1 as Hypothesis 1 (supervisor feedback, 2026-11-21)."""
+    """In Chapters 1 to 6, write RQ1 as Research Question 1 and H1 as Hypothesis 1 (supervisor feedback, 2026-11-21)."""
     body = list(doc.element.body.iterchildren())
     heads = [i for i, el in enumerate(body)
-             if el.tag == qn("w:p") and "".join(t.text or "" for t in el.iter(qn("w:t"))).startswith(("CHAPTER 4", "CHAPTER 5"))]
+             if el.tag == qn("w:p") and "".join(t.text or "" for t in el.iter(qn("w:t"))).startswith(("CHAPTER 1", "REFERENCES"))]
     assert len(heads) == 2, heads
-    steps = [(r"\b[Hh]ypotheses H(\d) to H(\d)\b", r"Hypotheses \1 to \2"),
-             (r"\bH(\d) to H(\d)\b", r"Hypotheses \1 to \2"),
+    steps = [(r"\b[Hh]ypotheses H(\d) (to|and) H(\d)\b", r"Hypotheses \1 \2 \3"),
+             (r"\bH(\d) (to|and) H(\d)\b", r"Hypotheses \1 \2 \3"),
              (r"\bRQ(\d)\b", r"Research Question \1"),
              (r"\bH(\d)\b", r"Hypothesis \1")]
     for el in body[heads[0]:heads[1]]:
@@ -627,6 +708,7 @@ def main():
     setup_styles(doc, text_w)
     fit_to_page(doc, text_w)
     chapter_digits(doc)
+    add_results_summary(doc)
     spell_out_chapter4(doc)
     figs, tabs = mark_captions(doc)
     highlight_placeholders(doc)
