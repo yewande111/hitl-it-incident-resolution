@@ -31,7 +31,7 @@ CONSENT = ROOT / "untitled folder" / "2. Participant Consent Form.docx"
 OUT = ROOT / "Dissertation - Full Draft.docx"
 LOGO = ROOT / "images" / "TU Dublin logo.png"      # taken from the title page of the template theses
 
-TITLE = "Evaluating the Effectiveness of Human in the Loop Feedback on AI Driven IT Incident Resolution Accuracy"
+TITLE = "Evaluating the Effectiveness of Human in the Loop Feedback on the Accuracy of AI Driven IT Ticket Classification"
 A4_W, A4_H = 11906, 16838          # twips
 CAPTION = re.compile(r"^(Figure|Table) \d+\.\d+:")
 
