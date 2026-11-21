@@ -47,24 +47,25 @@ ACKNOWLEDGEMENTS = ("I would like to thank my supervisor, Mr. Kevin Bayliss, for
     "this programme. Their support made a real difference, and I could not have completed this work without it.")
 
 ABSTRACT = [
-    "Many IT service desks use artificial intelligence (AI) to sort incoming tickets, and a ticket in the wrong "
-    "category goes to the wrong team. Having a person check the AI's decisions is a common safeguard, but earlier "
-    "research shows that this does not always improve accuracy. This study asked whether targeted human in the loop "
-    "feedback improves the accuracy of AI driven IT incident resolution, and how human involvement affects user trust.",
+    "Many IT service desks use artificial intelligence (AI) to categorise incoming tickets. Having a person "
+    "check the AI's decisions is a common safeguard, but research shows that this does not always improve "
+    "accuracy. This study asked whether targeted human in the loop feedback improves the accuracy of AI "
+    "driven IT incident resolution, and how human involvement affects user trust. As the study is a simulation, "
+    "accuracy was measured as correct ticket categorisation, the first step in resolving an incident, not as full "
+    "resolution.",
     "A DistilBERT model was fine-tuned on a public dataset of 47,837 IT support tickets and calibrated with "
     "temperature scaling. Four conditions were compared on 9,568 test tickets: AI only, selective review of tickets "
     "below 70 percent confidence, selective review with a stricter rule for Administrative rights requests, and full "
-    "review, with modelled reviewer error rates from 0 to 20 percent. An anonymous survey asked IT "
-    "professionals, technical students and other users of IT support about their trust in AI support tools.",
-    "The model alone was correct on 88.5 percent of tickets. Selective review checked 10.7 percent of tickets and "
-    "raised accuracy to between 91.7 and 93.9 percent at every reviewer error setting. Full review was the most "
+    "review, with modelled reviewer error rates from 0 to 20 percent. An anonymous survey asked 46 IT professionals, "
+    "technical students and other IT support users about their trust in AI tools.",
+    "The model alone categorised 88.5 percent of tickets correctly. Selective review checked 10.7 percent of tickets "
+    "and raised accuracy to between 91.7 and 93.9 percent at every reviewer error setting. Full review was the most "
     "accurate only when the reviewer rarely changed correct answers, and fell below AI only when the reviewer "
     "overturned 20 percent of them. The security rule cut unchecked wrong Administrative rights tickets from 35 to 5, "
-    "but needed 85 percent more reviews. In the survey, 82.6 percent of the 46 respondents said human review "
-    "makes them trust an AI system more, and most preferred selective review with stricter checks for "
-    "security-sensitive requests, but they rated full review highest for comfort.",
-    "Service desks should aim human review at the tickets the AI is unsure about, and should measure how often "
-    "their reviewers change answers that were already correct.",
+    "but needed 85 percent more reviews. In the survey, 82.6 percent said human review raises their trust, and most "
+    "preferred selective review with stricter security checks, but they rated full review highest for comfort.",
+    "Service desks should aim human review at tickets the AI is unsure about, and measure how often reviewers change "
+    "answers that were already correct. Measuring full resolution is left for future research.",
 ]
 
 ABBREVIATIONS = [
