@@ -49,10 +49,10 @@ ACKNOWLEDGEMENTS = ("I would like to thank my supervisor, Mr. Kevin Bayliss, for
 ABSTRACT = [
     "Many IT service desks use artificial intelligence (AI) to sort incoming tickets, and a ticket in the wrong "
     "category goes to the wrong team. Having a person check the AI's decisions is a common safeguard, but earlier "
-    "research shows that this does not always improve accuracy. I asked whether targeted human in the loop "
+    "research shows that this does not always improve accuracy. This study asked whether targeted human in the loop "
     "feedback improves the accuracy of AI driven IT incident resolution, and how human involvement affects user trust.",
-    "I fine-tuned a DistilBERT model on a public dataset of 47,837 IT support tickets and calibrated it with "
-    "temperature scaling. I compared four conditions on 9,568 test tickets: AI only, selective review of tickets "
+    "A DistilBERT model was fine-tuned on a public dataset of 47,837 IT support tickets and calibrated with "
+    "temperature scaling. Four conditions were compared on 9,568 test tickets: AI only, selective review of tickets "
     "below 70 percent confidence, selective review with a stricter rule for Administrative rights requests, and full "
     "review, with modelled reviewer error rates from 0 to 20 percent. An anonymous survey asked IT "
     "professionals, technical students and other users of IT support about their trust in AI support tools.",
